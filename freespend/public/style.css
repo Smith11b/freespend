@@ -40,8 +40,17 @@
 
 .income h1{
     margin-left: 15px;
-    
+}
 
+input {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid black;
+    width: 250px;
+    margin-left: 80px;
+    margin-right: 20px;
+    margin-top: 70px;
 }
 
 .expense {
@@ -55,3 +64,11 @@
     height: 200px;
     background-color: white;
 }
+
+button {
+    border-radius: 10px;
+    font-size: 35px;
+    color: #FFA50A;
+    width: 50px;
+}
+
