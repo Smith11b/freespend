@@ -1,6 +1,7 @@
 import React from 'react';
 
 
+
 const Income = function(props){
     return (<div>
         <h1 className = "top">Income</h1>
