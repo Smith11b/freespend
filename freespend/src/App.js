@@ -4,8 +4,8 @@ import Income from './Income';
 import Expense from './Expenses';
 import Total from './Total';
 
-function Cost(income, description){
-  this.amount = income.value;
+function Revenue(income, description){ //this class passes two input objects, the income and description inputs
+  this.amount = income.value;          // then it stores the values in properties on a new revenew. It's called in the incomeClickHandler
   this.description = description.value;
 }
 class App extends Component {
@@ -22,8 +22,14 @@ class App extends Component {
 
   incomeClickHandler = () => {
     let income = document.getElementById("income");
-    const expense = new Cost(income);
+    let description = document.getElementById("description")
+
+    if (income.value === '' || description.value === ''){
+      //Run "you forgot something" function.
+    } else {
+    const expense = new Revenue(income, description);
     this.state.transactions.push(expense);
+    }
   }
 
 

@@ -3,8 +3,8 @@ import React from 'react';
 
 
 const Header = function(props){
-    return (<div>
-        <h1 className = "logo">FreeSpend.</h1>
+    return (<div className = "logo">
+        <h1>FreeSpend.</h1>
     </div>)
 }
 

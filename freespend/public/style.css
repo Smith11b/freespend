@@ -1,0 +1,57 @@
+* {
+    margin: -2px;
+}
+
+#root {
+    width: 400px;
+    height: 750px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: 100px 100px 100px 100px 100px;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+    "logo"
+    "income"
+    "expense"
+    "total";
+}
+
+.logo {
+    grid-area: logo;
+    height: 100px;
+    background-color: white;
+    box-shadow: 0px 4px 11px 0px rgba(173,173,173,1);
+    margin-bottom: 8px;
+
+}
+
+.logo h1 {
+    margin-left: 120px;
+    padding-top: 27px;
+    color: #4CEFA4;
+}
+
+.income {
+    grid-area: income;
+    height: 150px;
+    background-color: #4CEFA4;
+
+}
+
+.income h1{
+    margin-left: 15px;
+    
+
+}
+
+.expense {
+    grid-area: expense;
+    height: 150px;
+    background-color: #FFA50A;
+}
+
+.freespend-total {
+    grid-area: total;
+    height: 200px;
+    background-color: white;
+}
