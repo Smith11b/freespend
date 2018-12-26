@@ -5,6 +5,14 @@ import Expense from './Expenses';
 import Total from './Total';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      fixedExpense : [],
+      freeSpend : 0,
+      transactions : []
+    }
+  }
   render() {
     return (
       <div>
