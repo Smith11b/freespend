@@ -3,6 +3,8 @@ import Header from "./Header";
 import Income from './Income';
 import Expense from './Expenses';
 import Total from './Total';
+import Nav from './Nav';
+
 
 function Revenue(income, description){ //this class passes two input objects, the income and description inputs
   this.amount = income.value;          // then it stores the values in properties on a new revenew. It's called in the incomeClickHandler
@@ -41,7 +43,8 @@ class App extends Component {
         <Header />
         <Income />
         <Expense />
-        <Total fixedExpense = '$3248' spent = "$249" freeSpend = "$380"/> 
+        <Total fixedExpense = '$3248' spent = "$249" freeSpend = "$380"/>
+        <Nav /> 
       </div>
     );
   }

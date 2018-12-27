@@ -3,7 +3,7 @@ import React from 'react';
 
 const Expense = function(props){
     return (<div className = "expense">
-        <h1 className = "top">Expense</h1>
+        <h1 className = "top">Expense</h1><img src = "./img/icons8-insert-card-80.png"></img>
         <input id = "expenses"></input>
         <button id = "plus-exp">+</button>
     </div>)
