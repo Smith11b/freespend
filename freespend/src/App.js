@@ -4,12 +4,10 @@ import Income from './Income';
 import Expense from './Expenses';
 import Total from './Total';
 import Nav from './Nav';
+import Revenue from './Classes';
 
 
-function Revenue(income, description){ //this class passes two input objects, the income and description inputs
-  this.amount = income.value;          // then it stores the values in properties on a new revenew. It's called in the incomeClickHandler
-  this.description = description.value;
-}
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -19,10 +17,7 @@ class App extends Component {
       transactions : [] // this will be an array of objects of the class Income, or Expense, they will contain the
     }                   // date, the amount the type, and the description of the transaction
   }
-
-  
-
-  incomeClickHandler = () => {
+incomeClickHandler = (e) => {
     let income = document.getElementById("income");
     let description = document.getElementById("description")
 
@@ -31,17 +26,14 @@ class App extends Component {
     } else {
     const expense = new Revenue(income, description);
     this.state.transactions.push(expense);
+    console.log(this.state.transactions);
     }
   }
-
-
-
-
   render() {
     return (
       <div>
         <Header />
-        <Income />
+        <Income addIncome = {this.incomeClickHandler} />
         <Expense />
         <Total fixedExpense = '$3248' spent = "$249" freeSpend = "$380"/>
         <Nav /> 
