@@ -6,7 +6,9 @@ import './Classes'
 import Total from './Total';
 import Nav from './Nav';
 import Revenue from './Classes';
-import ExpenseItem from './Classes'
+import ExpenseItem from './Classes';
+import { BrowserRouter as Router }  from 'react-router-dom'
+import Route from 'react-router-dom/Route'
 
 
 
@@ -38,12 +40,13 @@ incomeClickHandler = () => {
    this.setState( state =>{
     const transactions = [...state.transactions, rev];
     const incomeInput = '';
+    const freeSpend = this.calculateFreeSpend();
     return {
       transactions,
-      incomeInput
+      incomeInput,
+      freeSpend
     }
   })
-  this.calculateFreeSpend();
   console.log(this.state.transactions);
   }
 
@@ -75,9 +78,7 @@ incomeClickHandler = () => {
 // to the user.
 
   calculateFreeSpend = () => {
-    let total = this.transactTotal()
-    let expense = this.state.fixedExpense
-   this.setState({freeSpend : total + expense})
+    return this.transactTotal() + this.state.fixedExpense
 
   }
 
@@ -93,6 +94,7 @@ incomeClickHandler = () => {
 
   render() {
     return (
+      <Router>
       <div>
         <Header />
         <Income value = {this.state.incomeInput} onClick = {this.incomeClickHandler} onChange = {this.incomeOnChangeHandler} />
@@ -100,6 +102,8 @@ incomeClickHandler = () => {
         <Total fixedExpense = '$3248' spent = "$249" freeSpend = {this.state.freeSpend}/>
         <Nav /> 
       </div>
+      </Router>
+
     );
   }
 }
