@@ -2,8 +2,8 @@
 
 
 class Revenue {
-    constructor(props){
-        this.amount = 0;
+    constructor(input){
+        this.amount = input;
         this.description = "";
     } 
 }

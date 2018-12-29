@@ -14,26 +14,29 @@ class App extends Component {
     this.state = {
       fixedExpense : [], // an array of objects, amount properties will be added up to determine the fixed expenses
       freeSpend : 0,     // After fixed expenses and income are summed this will be what's left over.
-      transactions : [] // this will be an array of objects of the class Income, or Expense, they will contain the
-    }                   // date, the amount the type, and the description of the transaction
+      transactions : [], // this will be an array of objects of the class Income, or Expense, they will contain the date, the amount the type, and the description of the transaction
+      incomeInput : '',
+      expenseInput : ''
+       }                   
   }
-incomeClickHandler = (e) => {
-    let income = document.getElementById("income");
-    let description = document.getElementById("description")
+incomeClickHandler = () => {
+   const rev = new Revenue(this.state.incomeInput);
+   this.setState({
+     transactions : [...rev],
+     incomeInput : ''
+  })
+  }
 
-    if (income.value === '' || description.value === ''){
-      //Run "you forgot something" function.
-    } else {
-    const expense = new Revenue(income, description);
-    this.state.transactions.push(expense);
-    console.log(this.state.transactions);
-    }
+  incomeOnChangeHandler = (e) => {
+    this.setState({incomeInput : e.target.value});
+    console.log(this.state.incomeInput);
+  
   }
   render() {
     return (
       <div>
         <Header />
-        <Income addIncome = {this.incomeClickHandler} />
+        <Income value = {this.state.incomeInput} onClick = {this.incomeClickHandler} onChange = {this.incomeOnChangeHandler} />
         <Expense />
         <Total fixedExpense = '$3248' spent = "$249" freeSpend = "$380"/>
         <Nav /> 
