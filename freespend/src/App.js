@@ -6,9 +6,10 @@ import "./Classes";
 import Total from "./Total";
 import Nav from "./Nav";
 import Revenue from "./Classes";
-import {ExpenseItem} from "./Classes";
-import { BrowserRouter as Router } from "react-router-dom";
-import Route from "react-router-dom/Route";
+import { ExpenseItem } from "./Classes";
+import { Route, Switch } from "react-router-dom";
+// import Route from "react-router-dom/Route";
+import FixedExp from "./FixedExpenses";
 
 class App extends Component {
   constructor(props) {
@@ -25,12 +26,11 @@ class App extends Component {
     // Bindings for passed functions ---------------------
     this.incomeOnChangeHandler = this.incomeOnChangeHandler.bind(this);
     this.expenseOnChangeHandler = this.expenseOnChangeHandler.bind(this);
-    
+
     this.incomeClickHandler = this.incomeClickHandler.bind(this);
     this.transactTotal = this.transactTotal.bind(this);
     this.calculateFreeSpend = this.calculateFreeSpend.bind(this);
     this.expenseClickHandler = this.expenseClickHandler.bind(this);
-    
   }
 
   // This function adds a new revenue transaction to the transactions array in state, then calls calculate freespend which also
@@ -53,7 +53,7 @@ class App extends Component {
 
   expenseClickHandler = () => {
     const exp = new ExpenseItem(this.state.expenseInput);
-    console.log(exp)
+    console.log(exp);
 
     this.setState(prevState => {
       const transactions = [...prevState.transactions, exp];
@@ -107,33 +107,41 @@ class App extends Component {
 
   expenseOnChangeHandler = e => {
     this.setState({ expenseInput: e.target.value });
-  }
+  };
 
   // I've broken the render function down into it's components. Total currently has placeholder values but I'll need to refactor those
   // to update when state does.
 
   render() {
     return (
-      <Router>
+      <div>
         <div>
           <Header />
-          <Income
-            value={this.state.incomeInput}
-            onClick={this.incomeClickHandler}
-            onChange={this.incomeOnChangeHandler}
-          />
-          <Expense
-            value = {this.state.expenseInput}
-            thisClick = {this.expenseClickHandler}
-            onChange = {this.expenseOnChangeHandler} />
-          <Total
-            fixedExpense="$3248"
-            spent="$249"
-            freeSpend={this.state.freeSpend}
-          />
-          <Nav />
+          <Switch>
+            <Route path="/expenses" component={FixedExp} exact />
+            <Route path="/transactions" render = {(props) => <Income {...props} money={this.state.money}/>}/>
+            <Route path="/goals" />
+            <Route path="/send-money" />
+          </Switch>
         </div>
-      </Router>
+
+        <Income
+          value={this.state.incomeInput}
+          onClick={this.incomeClickHandler}
+          onChange={this.incomeOnChangeHandler}
+        />
+        <Expense
+          value={this.state.expenseInput}
+          thisClick={this.expenseClickHandler}
+          onChange={this.expenseOnChangeHandler}
+        />
+        <Total
+          fixedExpense="$3248"
+          spent="$249"
+          freeSpend={this.state.freeSpend}
+        />
+        <Nav />
+      </div>
     );
   }
 }
