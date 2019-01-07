@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import Header from "./Header";
-import Income from "./Income";
-import Expense from "./Expenses";
-import "./Classes";
-import Total from "./Total";
 import Nav from "./Nav";
+
+import "./Classes";
 import Revenue from "./Classes";
 import { ExpenseItem } from "./Classes";
 import { Route, Switch } from "react-router-dom";
+import Home from "./Home";
 // import Route from "react-router-dom/Route";
 import FixedExp from "./FixedExpenses";
 
@@ -118,28 +117,24 @@ class App extends Component {
         <div>
           <Header />
           <Switch>
-            <Route path="/expenses" component={FixedExp} exact />
-            <Route path="/transactions" render = {(props) => <Income {...props} money={this.state.money}/>}/>
+            <Route
+              path="/home"
+              render={props => (
+                <Home
+                  {...props}
+                  appState={this.state}
+                  incomeHandle={this.incomeClickHandler}
+                  incomeChange={this.incomeOnChangeHandler}
+                  expenseHandle={this.expenseClickHandler}
+                  expenseChange={this.expenseOnChangeHandler}
+                />
+              )}
+            />
+            <Route path="/transactions" />
             <Route path="/goals" />
             <Route path="/send-money" />
           </Switch>
         </div>
-
-        <Income
-          value={this.state.incomeInput}
-          onClick={this.incomeClickHandler}
-          onChange={this.incomeOnChangeHandler}
-        />
-        <Expense
-          value={this.state.expenseInput}
-          thisClick={this.expenseClickHandler}
-          onChange={this.expenseOnChangeHandler}
-        />
-        <Total
-          fixedExpense="$3248"
-          spent="$249"
-          freeSpend={this.state.freeSpend}
-        />
         <Nav />
       </div>
     );
