@@ -6,7 +6,7 @@ import "./Classes";
 import Total from "./Total";
 import Nav from "./Nav";
 import Revenue from "./Classes";
-import ExpenseItem from "./Classes";
+import {ExpenseItem} from "./Classes";
 import { BrowserRouter as Router } from "react-router-dom";
 import Route from "react-router-dom/Route";
 
@@ -53,6 +53,8 @@ class App extends Component {
 
   expenseClickHandler = () => {
     const exp = new ExpenseItem(this.state.expenseInput);
+    console.log(exp)
+
     this.setState(prevState => {
       const transactions = [...prevState.transactions, exp];
       const expenseInput = "";

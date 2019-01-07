@@ -1,6 +1,7 @@
 import React from "react";
 
 const Expense = function(props) {
+
   return (
     <div className="expense">
       <h1 className="top">Expense</h1>
