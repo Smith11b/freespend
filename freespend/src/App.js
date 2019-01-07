@@ -24,9 +24,13 @@ class App extends Component {
 
     // Bindings for passed functions ---------------------
     this.incomeOnChangeHandler = this.incomeOnChangeHandler.bind(this);
+    this.expenseOnChangeHandler = this.expenseOnChangeHandler.bind(this);
+    
     this.incomeClickHandler = this.incomeClickHandler.bind(this);
     this.transactTotal = this.transactTotal.bind(this);
     this.calculateFreeSpend = this.calculateFreeSpend.bind(this);
+    this.expenseClickHandler = this.expenseClickHandler.bind(this);
+    
   }
 
   // This function adds a new revenue transaction to the transactions array in state, then calls calculate freespend which also
@@ -41,6 +45,21 @@ class App extends Component {
       return {
         transactions,
         incomeInput,
+        freeSpend
+      };
+    });
+    console.log(this.state.transactions);
+  };
+
+  expenseClickHandler = () => {
+    const exp = new ExpenseItem(this.state.expenseInput);
+    this.setState(prevState => {
+      const transactions = [...prevState.transactions, exp];
+      const expenseInput = "";
+      const freeSpend = this.calculateFreeSpend(transactions);
+      return {
+        transactions,
+        expenseInput,
         freeSpend
       };
     });
@@ -84,6 +103,10 @@ class App extends Component {
     this.setState({ incomeInput: e.target.value });
   };
 
+  expenseOnChangeHandler = e => {
+    this.setState({ expenseInput: e.target.value });
+  }
+
   // I've broken the render function down into it's components. Total currently has placeholder values but I'll need to refactor those
   // to update when state does.
 
@@ -97,7 +120,10 @@ class App extends Component {
             onClick={this.incomeClickHandler}
             onChange={this.incomeOnChangeHandler}
           />
-          <Expense />
+          <Expense
+            value = {this.state.expenseInput}
+            thisClick = {this.expenseClickHandler}
+            onChange = {this.expenseOnChangeHandler} />
           <Total
             fixedExpense="$3248"
             spent="$249"
