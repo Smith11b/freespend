@@ -130,7 +130,7 @@ class App extends Component {
                 />
               )}
             />
-            <Route path="/transactions" />
+            <Route path="/transactions" render = {props => <FixedExp {...props} appState = {this.state} />} />
             <Route path="/goals" />
             <Route path="/send-money" />
           </Switch>

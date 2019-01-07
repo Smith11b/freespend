@@ -154,3 +154,7 @@ button {
 #send-button {
   grid-area: send;
 }
+
+#fixed {
+    background-color: #FF840A;
+}
