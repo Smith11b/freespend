@@ -4,7 +4,7 @@ import Nav from "./Nav";
 
 import "./Classes";
 import Revenue from "./Classes";
-import { ExpenseItem } from "./Classes";
+import { ExpenseItem, Fixed } from "./Classes";
 import { Route, Switch } from "react-router-dom";
 import Home from "./Home";
 // import Route from "react-router-dom/Route";
@@ -19,6 +19,7 @@ class App extends Component {
       transactions: [], // this will be an array of objects of the class Income, or Expense, they will contain the date, the amount the type, and the description of the transaction
       incomeInput: "",
       expenseInput: "",
+      fixedInput: "",
       fixedExpenseTotal: 0
     };
 
@@ -30,6 +31,10 @@ class App extends Component {
     this.transactTotal = this.transactTotal.bind(this);
     this.calculateFreeSpend = this.calculateFreeSpend.bind(this);
     this.expenseClickHandler = this.expenseClickHandler.bind(this);
+    this.fixedExpenseClickHandler = this.fixedExpenseClickHandler.bind(this);
+    this.fixedExpenseOnChangeHandler = this.fixedExpenseOnChangeHandler.bind(this);
+    
+    
   }
 
   // This function adds a new revenue transaction to the transactions array in state, then calls calculate freespend which also
@@ -70,10 +75,10 @@ class App extends Component {
   // This function goes through the array of fixed expenses which are negative intergers, then ads them together to get the
   //change the fixed expenses amount in state. I'll need to refactor it (it's redundant) and it will also need to update state
 
-  calulateFixedExpenses = () => {
+  calulateFixedExpenses = transactions => {
     let result = 0;
-    for (let i = 0; i < this.state.fixedExpenses.length; i++) {
-      result += this.state.fixedExpenses[i].amount;
+    for (let i = 0; i < transactions.length; i++) {
+      result += transactions[i].amount;
     }
     return result;
   };
@@ -108,8 +113,26 @@ class App extends Component {
     this.setState({ expenseInput: e.target.value });
   };
 
+  fixedExpenseOnChangeHandler = e => this.setState({fixedInput: e.target.value})
+
   // I've broken the render function down into it's components. Total currently has placeholder values but I'll need to refactor those
   // to update when state does.
+
+  fixedExpenseClickHandler = () => {
+    const fExp = new Fixed(this.state.fixedInput)
+    this.setState(prevState => {
+      const expenses = [...prevState.fixedExpenses, fExp];
+      const fixedInput = "";
+      const fixedExpenseTotal = this.calculateFixedExpenses(expenses)
+      return {
+        fixedExpenses: expenses,
+        fixedInput,
+        fixedExpenseTotal
+
+      }
+    })
+
+  }
 
   render() {
     return (
@@ -130,7 +153,7 @@ class App extends Component {
                 />
               )}
             />
-            <Route path="/transactions" render = {props => <FixedExp {...props} appState = {this.state} />} />
+            <Route path="/transactions" render = {props => <FixedExp {...props} appState = {this.state} onClick = {this.fixedExpenseClickHandler} onChange = {this.fixedExpenseOnChangeHandler} />} />
             <Route path="/goals" />
             <Route path="/send-money" />
           </Switch>

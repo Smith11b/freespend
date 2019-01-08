@@ -12,6 +12,13 @@ class Revenue {
   }
 }
 
+class Fixed {
+  constructor(input) {
+    this.amount = Number(input);
+    this.description = "";
+  }
+}
 
+export {Fixed};
 export {ExpenseItem};
 export default Revenue;

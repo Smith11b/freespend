@@ -9,12 +9,9 @@ const AddFixedExp = function(props) {
         alt="a credit card being swiped"
         src="./img/icons8-insert-card-80.png"
       />
-      <input value = {props.value} onChange = {props.onChange} id="expenses" />
-      <button onClick = {props.thisClick}  id="plus-exp">+</button>
-      <div>
-          
-      </div>
-    </div>
+      <input value = {props.appState.fixedInput} onChange = {props.onChange} id="expenses" />
+      <button onClick = {props.onClick}  id="plus-exp">+</button>
+       </div>
   );
 };
 
