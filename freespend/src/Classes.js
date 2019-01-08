@@ -19,6 +19,6 @@ class Fixed {
   }
 }
 
-export {Fixed};
-export {ExpenseItem};
+export { Fixed };
+export { ExpenseItem };
 export default Revenue;

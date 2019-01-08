@@ -1,14 +1,24 @@
 import React from "react";
 import AddFixedExp from "./AddFixedExpense";
-
+import ExpenseTotal from "./ExpenseTotal";
+import FixedCard from "./FixedCard";
 
 function FixedExp(props) {
-  return <div>
-      <AddFixedExp appState = {props.appState} onClick = {props.onClick} onChange = {props.onChange}/>
+  return (
+    <div>
+      <AddFixedExp
+        appState={props.appState}
+        onClick={props.onClick}
+        onChange={props.onChange}
+      />
       <div>
-
+          {props.appState.fixedExpenses.map(expense => {
+              return <FixedCard fixedName = "Rent" fixedCost = {expense.amount} />
+          })}
       </div>
-      </div>
+      <ExpenseTotal total = {props.appState.fixedExpenseTotal}/>
+    </div>
+  );
 }
 
 export default FixedExp;
