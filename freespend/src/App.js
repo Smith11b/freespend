@@ -152,7 +152,7 @@ class App extends Component {
               )}
             />
             <Route
-              path="/transactions"
+              path="/expenses"
               render={props => (
                 <FixedExp
                   {...props}
