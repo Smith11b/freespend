@@ -120,14 +120,16 @@ class App extends Component {
   // to update when state does.
 
   fixedExpenseClickHandler = () => {
-    const fExp = new Fixed(this.state.fixedInput);
+    const fExp = new Fixed(this.state.fixedInput, this.state.fixedDesc);
     this.setState(prevState => {
       const expenses = [...prevState.fixedExpenses, fExp];
       const fixedInput = "";
+      const fixedDesc = "";
       const fixedExpenseTotal = this.calculateFixedExpenses(expenses);
       return {
         fixedExpenses: expenses,
         fixedInput,
+        fixedDesc,
         fixedExpenseTotal
       };
     });

@@ -14,7 +14,7 @@ function FixedExp(props) {
       />
       <div>
           {props.appState.fixedExpenses.map(expense => {
-              return <FixedCard fixedName = "Rent" fixedCost = {expense.amount} />
+              return <FixedCard fixedName = {expense.description} fixedCost = {expense.amount} />
           })}
       </div>
       <ExpenseTotal total = {props.appState.fixedExpenseTotal}/>

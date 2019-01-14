@@ -7,7 +7,7 @@ function FixedCard(props) {
         {props.fixedName}
         <span>:</span>
       </h1>
-      <h1>{props.fixedCost}</h1>
+      <h1>${props.fixedCost}</h1>
     </div>
   );
 }

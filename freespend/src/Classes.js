@@ -13,9 +13,9 @@ class Revenue {
 }
 
 class Fixed {
-  constructor(input) {
+  constructor(input, desc) {
     this.amount = Number(input);
-    this.description = "";
+    this.description = desc;
   }
 }
 

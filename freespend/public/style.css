@@ -157,9 +157,13 @@ button {
 
 #fixed {
     background-color: #FF840A;
-    min-height: 200px;
+    height: 200px;
 }
 
 .expense-list {
   min-height: 300px;
+}
+
+.home-icon{
+  margin-left: 15px;
 }
