@@ -167,3 +167,16 @@ button {
 .home-icon{
   margin-left: 15px;
 }
+
+.expense-total-h1{
+  display: inline-block;
+
+}
+
+.expense-total-amount {
+  display: inline-block;
+}
+
+.colon {
+  color: #FF840A;
+}
