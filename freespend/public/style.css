@@ -2,9 +2,11 @@
   margin: -2px;
 }
 
+
+
 #root {
   width: 400px;
-  height: 750px;
+  max-height: 750px;
   margin: 0 auto;
   display: grid;
   grid-template-rows: 100px 100px 100px 100px 100px;
@@ -162,6 +164,7 @@ button {
 
 .expense-list {
   min-height: 300px;
+  overflow: auto;
 }
 
 .home-icon{

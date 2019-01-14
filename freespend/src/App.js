@@ -98,8 +98,8 @@ class App extends Component {
   // and ads it to the fixed expenses totaled in state. It does this while updating the freespend property of state so it can be displayed
   // to the user.
 
-  calculateFreeSpend = transactions => {
-    return this.transactTotal(transactions) + this.state.fixedExpenseTotal;
+  calculateFreeSpend = (transactions, expenseTotal = this.state.fixedExpenseTotal) => {
+    return this.transactTotal(transactions) + expenseTotal;
   };
 
   // This handles the usesr input on the income component. Allows it to update state so the data from the user can be used in other
@@ -126,11 +126,13 @@ class App extends Component {
       const fixedInput = "";
       const fixedDesc = "";
       const fixedExpenseTotal = this.calculateFixedExpenses(expenses);
+      const freeSpend = this.calculateFreeSpend(this.state.transactions, fixedExpenseTotal)
       return {
         fixedExpenses: expenses,
         fixedInput,
         fixedDesc,
-        fixedExpenseTotal
+        fixedExpenseTotal,
+        freeSpend
       };
     });
   };
