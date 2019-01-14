@@ -20,6 +20,7 @@ class App extends Component {
       incomeInput: "",
       expenseInput: "",
       fixedInput: "",
+      fixedDesc: "",
       fixedExpenseTotal: 0
     };
 
@@ -139,7 +140,8 @@ class App extends Component {
           <Header />
           <Switch>
             <Route
-              path="/home"
+              exact
+              path="/"
               render={props => (
                 <Home
                   {...props}

@@ -157,4 +157,5 @@ button {
 
 #fixed {
     background-color: #FF840A;
+    min-height: 200px;
 }
