@@ -10,6 +10,7 @@ function FixedExp(props) {
         appState={props.appState}
         onClick={props.onClick}
         onChange={props.onChange}
+        descOnChange = {props.descOnChange}
       />
       <div>
           {props.appState.fixedExpenses.map(expense => {

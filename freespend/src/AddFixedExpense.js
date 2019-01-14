@@ -15,7 +15,7 @@ const AddFixedExp = function(props) {
       />
       <input
         value={props.appState.fixedDesc}
-        onChange={props.onChange}
+        onChange={props.descOnChange}
         id="expenses" placeholder = "description..."
       />
       <button onClick={props.onClick} id="plus-exp">

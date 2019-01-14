@@ -32,9 +32,9 @@ class App extends Component {
     this.calculateFreeSpend = this.calculateFreeSpend.bind(this);
     this.expenseClickHandler = this.expenseClickHandler.bind(this);
     this.fixedExpenseClickHandler = this.fixedExpenseClickHandler.bind(this);
-    this.fixedExpenseOnChangeHandler = this.fixedExpenseOnChangeHandler.bind(
-      this
-    );
+    this.fixedExpenseOnChangeHandler = this.fixedExpenseOnChangeHandler.bind(this);
+    this.addExpenseChangeHandler = this.addExpenseChangeHandler.bind(this);
+    
   }
 
   // This function adds a new revenue transaction to the transactions array in state, then calls calculate freespend which also
@@ -133,6 +133,10 @@ class App extends Component {
     });
   };
 
+  addExpenseChangeHandler = e => {
+    this.setState({fixedDesc : e.target.value})
+  }
+
   render() {
     return (
       <div>
@@ -161,6 +165,7 @@ class App extends Component {
                   appState={this.state}
                   onClick={this.fixedExpenseClickHandler}
                   onChange={this.fixedExpenseOnChangeHandler}
+                  descOnChange = {this.addExpenseChangeHandler}
                 />
               )}
             />
