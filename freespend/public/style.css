@@ -183,3 +183,8 @@ button {
 .colon {
   color: #FF840A;
 }
+
+a {
+  color: #394b40;
+  text-decoration: none;
+}
