@@ -6,7 +6,8 @@ FreeSpend is a budgeting application that makes it simply easy to answer the que
 
 ## High Fidelity WireFrame
 
-![Image of FreeSpend Mockup in Adobe XD]("http://smith11b.github.io/images/freespend-mockup.png")
+![Image of FreeSpend Mockup in Adobe XD](http://smith11b.github.io/images/freespend-mockup.png)
+
 
 ## User Stories:
 
