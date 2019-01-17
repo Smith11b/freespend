@@ -3,6 +3,11 @@ class ExpenseItem {
     this.amount = 0 - Number(input);
     this.description = "";
   }
+
+  edit(input, desc){
+    this.amount = 0 - Number(input);
+    this.description = desc;
+  }
 }
 
 class Revenue {
@@ -10,6 +15,12 @@ class Revenue {
     this.amount = Number(input);
     this.description = "";
   }
+
+  edit(input, desc){
+    this.amount = Number(input);
+    this.description = desc;
+  }
+
 }
 
 class Fixed {
@@ -17,6 +28,37 @@ class Fixed {
     this.amount = 0 - Number(input);
     this.description = desc;
   }
+
+  edit(input, desc){
+    this.amount = 0 - Number(input);
+    this.description = desc;
+  }
+}
+
+class Goal {
+  constructor(input, desc){
+    this.amount = Number(input);
+    this.description = desc;
+    this.currentAmount = 0;
+
+  }
+
+  addMoney(input){
+    this.currentAmount += Number(input);
+  }
+
+  edit(input, desc){
+    if(input){
+   this.currentAmount = 0 - Number(input);
+    }
+    if (desc){
+    this.description = desc;
+    }
+  }
+
+
+
+
 }
 
 export { Fixed };

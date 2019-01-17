@@ -20,7 +20,10 @@ class App extends Component {
       expenseInput: "",
       fixedInput: "",
       fixedDesc: "",
-      fixedExpenseTotal: 0
+      fixedExpenseTotal: 0,
+      goals: [],
+      goalInput: "",
+      goalDesc: "",
     };
 
     // Bindings for passed functions ---------------------
