@@ -19,4 +19,7 @@ FreeSpend is a budgeting application that makes it simply easy to answer the que
 6. **Send Money** - send money will make an api call to the plaid api, to grab a users bank information, display their current balance, and eventually send money via debit card transfer.
 7. Each page will also have a home button in the header that allows them to go back to the home screen. 
 
+## MindMap and Component Tree:
+![Image of FreeSpend Mockup in Adobe XD](http://smith11b.github.io/images/mind-map.png)
+
 Hope you enjoy!
