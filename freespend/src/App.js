@@ -172,7 +172,7 @@ class App extends Component {
                 />
               )}
             />
-            <Route path="/transaction" render = {props => (<Transactions {...props} transactions = {this.state.transactions}/>)} />
+            <Route path="/transactions" render = {props => (<Transactions {...props} transactions = {this.state.transactions}/>)} />
             <Route path="/goals" />
             <Route path="/send-money" />
           </Switch>

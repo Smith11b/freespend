@@ -8,4 +8,4 @@ function TransactionCard(props) {
     )
 }
 
-export default TransactionCard
+export default TransactionCard;

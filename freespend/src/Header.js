@@ -6,7 +6,7 @@ const Header = function(props) {
     <div className="logo">
       <h1>FreeSpend.</h1>
       <Link to = "/">
-      <img className = "home-icon" src = "./img/home.png"></img></Link>
+      <img className = "home-icon" src = "./img/home.png" alt= "home icon"></img></Link>
     </div>
   );
 };

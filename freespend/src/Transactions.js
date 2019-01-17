@@ -5,10 +5,10 @@ function Transactions(props) {
     return (
         <div>
             {props.transactions.map(transaction => {
-                return <TransactionCard amount = {props.amount} description = {props.description} />
+                return <TransactionCard amount = {transaction.amount} description = {transaction.description} />
             })}
         </div>
     )
 }
 
-export default Transactions
+export default Transactions;
