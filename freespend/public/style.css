@@ -188,3 +188,15 @@ a {
   color: #394b40;
   text-decoration: none;
 }
+
+.transaction-mid {
+  height: 348px;
+  overflow-y: auto;
+}
+
+.transaction-head {
+  height: 150px;
+  background-color: #4cefa4;
+  font-family: "Roboto", sans-serif;
+  color: #394b40;
+}
