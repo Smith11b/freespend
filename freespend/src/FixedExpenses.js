@@ -12,7 +12,7 @@ function FixedExp(props) {
         onChange={props.onChange}
         descOnChange = {props.descOnChange}
       />
-      <div>
+      <div className = "expense-list">
           {props.appState.fixedExpenses.map(expense => {
               return <FixedCard fixedName = {expense.description} fixedCost = {expense.amount} />
           })}
