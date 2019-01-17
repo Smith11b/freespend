@@ -1,6 +1,6 @@
 import React from "react";
 
-const AddFixedExp = function(props) {
+const TransactionHeader = function(props) {
   return (
     <div className="transaction-head" >
       <h1 className="top transaction-h1">Transactions</h1>
@@ -12,4 +12,4 @@ const AddFixedExp = function(props) {
   );
 };
 
-export default AddFixedExp;
+export default TransactionHeader;

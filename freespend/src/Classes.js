@@ -61,6 +61,7 @@ class Goal {
 
 }
 
+export {Goal};
 export { Fixed };
 export { ExpenseItem };
 export default Revenue;

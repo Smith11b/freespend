@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import Header from "./Header";
 import Nav from "./Nav";
 import "./Classes";
-import Revenue from "./Classes";
+import Revenue, { Goal } from "./Classes";
 import { ExpenseItem, Fixed } from "./Classes";
 import { Route, Switch } from "react-router-dom";
 import Home from "./Home";
 import FixedExp from "./FixedExpenses";
 import Transactions from "./Transactions";
+import Goals from "./Goals";
 
 class App extends Component {
   constructor(props) {
@@ -176,7 +177,7 @@ class App extends Component {
               )}
             />
             <Route path="/transactions" render = {props => (<Transactions {...props} transactions = {this.state.transactions}/>)} />
-            <Route path="/goals" />
+            <Route path="/goals" render = {props => (<Goals {...props} appState = {this.state} />)} />
             <Route path="/send-money" />
           </Switch>
         </div>
