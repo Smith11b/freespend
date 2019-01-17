@@ -163,7 +163,7 @@ button {
 }
 
 .expense-list {
-  height: 230px;
+  height: 267px;
   overflow-y: auto;
 }
 
@@ -173,12 +173,23 @@ button {
 
 .expense-total-h1{
   display: inline-block;
-
+  width: 60%;
+  padding: 15px;
+  font-family: "Roboto", sans-serif;
+  color: #394b40;
 }
+
 
 .expense-total-amount {
   display: inline-block;
+  font-family: "Roboto", sans-serif;
+  color: #FF840A
 }
+
+.expense-card {
+  border-bottom: #c9c9c9 1px solid;
+}
+
 
 .colon {
   color: #FF840A;
@@ -199,4 +210,30 @@ a {
   background-color: #4cefa4;
   font-family: "Roboto", sans-serif;
   color: #394b40;
+}
+
+.transaction-head img {
+  vertical-align: middle;
+ 
+}
+.transaction-h1 {
+  padding-left: 40px;
+  padding-top: 50px;
+}
+
+.goal-head {
+  height: 150px;
+  background-color: #80F4FD;
+  font-family: "Roboto", sans-serif;
+  color: #394b40;
+
+}
+
+.goal-mid {
+  height: 348px;
+  overflow-y: auto;
+}
+
+.light-orange {
+  color: #ffa50a;
 }

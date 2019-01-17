@@ -5,6 +5,9 @@ function Goals() {
     return (
         <div>
             <GoalHeader />
+            <div className = "goal-mid">
+                
+            </div>
             
         </div>
     )
