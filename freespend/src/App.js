@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Header from "./Header";
 import Nav from "./Nav";
 import "./Classes";
-import Revenue, { Goal } from "./Classes";
+import Revenue from "./Classes";
 import { ExpenseItem, Fixed } from "./Classes";
 import { Route, Switch } from "react-router-dom";
 import Home from "./Home";

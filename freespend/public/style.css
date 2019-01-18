@@ -176,7 +176,7 @@ button {
   width: 60%;
   padding: 15px;
   font-family: "Roboto", sans-serif;
-  color: #394b40;
+  color: #7e8180;
 }
 
 
@@ -187,7 +187,7 @@ button {
 }
 
 .expense-card {
-  border-bottom: #c9c9c9 1px solid;
+  border-bottom: #ffa50a 1px solid;
 }
 
 
@@ -221,6 +221,17 @@ a {
   padding-top: 50px;
 }
 
+.transaction-card {
+  border-bottom: #4cefa4 1px solid;
+  
+
+}
+
+.transaction-entry {
+  padding: 15px;
+  font-family: "Roboto", sans-serif;
+  color: #394b40;
+}
 .goal-head {
   height: 150px;
   background-color: #80F4FD;
@@ -236,4 +247,17 @@ a {
 
 .light-orange {
   color: #ffa50a;
+}
+
+.warning {
+  padding: 40px;
+  padding-top: 100px;
+  font-family: "Roboto", sans-serif;
+  color: #b8b8b8;
+
+
+}
+
+.fixed-warning {
+  padding: bottom 75px;
 }
