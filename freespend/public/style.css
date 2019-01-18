@@ -163,7 +163,7 @@ button {
 }
 
 .expense-list {
-  height: 267px;
+  height: 236px;
   overflow-y: auto;
 }
 
@@ -259,5 +259,14 @@ a {
 }
 
 .fixed-warning {
-  padding: bottom 75px;
+  padding: bottom 40px;
+}
+
+.goal-h1 {
+  padding-left: 115px;
+  padding-top: 50px;
+}
+
+.goal-head img {
+  vertical-align: middle;
 }
