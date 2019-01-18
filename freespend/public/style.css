@@ -280,3 +280,43 @@ a {
   display: inline-block;
   padding-right: 10px;
 }
+
+.modal-box {
+  position: absolute;
+  background-color: white;
+  width: 300px;
+  font-family: "Roboto", sans-serif;
+  color: #394b40;
+  height: 150px;
+  top: 160px;
+  left: 60px;
+  border-radius: 4px;
+
+}
+
+.modal-overlay  {
+  background-color: rgba(38, 44, 44, 0.8);
+  position: absolute;
+  height: 580px;
+  width: 419px;
+  
+}
+
+.modal-box button {
+ width: 90px;
+  margin-left: 100px;
+  margin-top: 10px;
+  border-radius: 0;
+  border: #FFa50A 1px solid;
+  font-size: 20px;
+}
+
+.modal-input {
+  display: block;
+  margin-left: 20px;
+}
+
+.modal-box h1 {
+  padding-left: 60px;
+  padding-top: 10px;
+}

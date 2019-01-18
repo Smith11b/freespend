@@ -10,6 +10,7 @@ import FixedExp from "./FixedExpenses";
 import Transactions from "./Transactions";
 import Goals from "./Goals";
 
+
 class App extends Component {
   constructor(props) {
     super(props);

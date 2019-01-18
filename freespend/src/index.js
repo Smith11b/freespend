@@ -3,11 +3,16 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
+import ModalProvider from "./Provider";
+export const {Consumer, Provider} = React.createContext();
+
 
 ReactDOM.render(
+<ModalProvider>
   <BrowserRouter>
     <App />
-  </BrowserRouter>,
+  </BrowserRouter>
+  </ModalProvider>,
   document.getElementById("root")
 );
 
