@@ -231,6 +231,11 @@ a {
   padding: 15px;
   font-family: "Roboto", sans-serif;
   color: #394b40;
+  display: inline-block;
+}
+
+.transaction-amount {
+  display: inline-block;
 }
 .goal-head {
   height: 150px;
@@ -269,4 +274,9 @@ a {
 
 .goal-head img {
   vertical-align: middle;
+}
+
+.edit-icon {
+  display: inline-block;
+  padding-right: 10px;
 }
