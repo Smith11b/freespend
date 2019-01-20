@@ -1,6 +1,6 @@
 import React from "react";
 
-function IncomeModal(props) {
+function ExpenseModal(props) {
   return (
     <div
       style={!props.show ? { display: "none" } : { display: "block" }}
@@ -10,13 +10,13 @@ function IncomeModal(props) {
         <h1>What was it?</h1>
         <input
           className="modal-input"
-          value={props.income}
-          onChange={props.descChange}
+          value={props.expense}
+          onChange={props.expenseDescChange}
         />
-        <button onClick={props.addIncomeDesc}>Add it!</button>
+        <button onClick={props.addExpenseDesc}>Add it!</button>
       </div>
     </div>
   );
 }
 
-export default IncomeModal;
+export default ExpenseModal;

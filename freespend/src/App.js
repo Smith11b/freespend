@@ -22,9 +22,10 @@ class App extends Component {
       expenseInput: "",
       expenseDesc: "",
       fixedInput: "",
-      showModal : false,
+      showModal: false,
       fixedDesc: "",
       fixedExpenseTotal: 0,
+      showExpenseModal: false,
       goals: [],
       goalInput: "",
       goalDesc: ""
@@ -38,14 +39,16 @@ class App extends Component {
     this.calculateFreeSpend = this.calculateFreeSpend.bind(this);
     this.expenseClickHandler = this.expenseClickHandler.bind(this);
     this.fixedExpenseClickHandler = this.fixedExpenseClickHandler.bind(this);
-    this.fixedExpenseOnChangeHandler = this.fixedExpenseOnChangeHandler.bind(this);
+    this.fixedExpenseOnChangeHandler = this.fixedExpenseOnChangeHandler.bind(
+      this
+    );
     this.addExpenseChangeHandler = this.addExpenseChangeHandler.bind(this);
     this.toggleShowModal = this.toggleShowModal.bind(this);
     this.addIncomeDesc = this.addIncomeDesc.bind(this);
-    this.incomeDescChange = this.incomeDescChange.bind(this)
-    
-    
-    
+    this.incomeDescChange = this.incomeDescChange.bind(this);
+    this.toggleShowExpenseModal = this.toggleShowExpenseModal.bind(this);
+    this.expenseChange = this.expenseChange.bind(this);
+    this.addExpenseDesc = this.addExpenseDesc.bind(this);
   }
 
   toggleShowModal() {
@@ -54,25 +57,44 @@ class App extends Component {
     });
   }
 
-  addIncomeDesc(){
-    let incomeDesc = this.state.incomeDesc;
-    let transactions = this.state.transactions;
-    transactions[transactions.length -1].description = incomeDesc;
-    this.setState({transactions});
-    this.toggleShowModal();
-
+  toggleShowExpenseModal() {
+    this.setState(ps => {
+      return { showExpenseModal: !ps.showExpenseModal };
+    });
   }
 
-  incomeDescChange(e){
+  addExpenseDesc() {
+    let expenseDesc = this.state.expenseDesc;
+    let transactions = this.state.transactions;
+    transactions[transactions.length - 1].description = expenseDesc;
+    this.setState({ transactions });
+    this.toggleShowExpenseModal();
+  }
+
+  addIncomeDesc() {
+    let incomeDesc = this.state.incomeDesc;
+    let transactions = this.state.transactions;
+    transactions[transactions.length - 1].description = incomeDesc;
+    this.setState({ transactions });
+    this.toggleShowModal();
+  }
+
+  incomeDescChange(e) {
     this.setState({
-      incomeDesc : e.target.value
-    })
+      incomeDesc: e.target.value
+    });
+  }
+
+  expenseChange(e) {
+    this.setState({
+      expenseDesc: e.target.value
+    });
   }
 
   // This function adds a new revenue transaction to the transactions array in state, then calls calculate freespend which also
   // updates state. I'll need to refactor this. The console log was for debuggin purposes
 
-  incomeClickHandler = () => { 
+  incomeClickHandler = () => {
     const rev = new Revenue(this.state.incomeInput);
     this.setState(prevState => {
       const transactions = [...prevState.transactions, rev];
@@ -95,6 +117,7 @@ class App extends Component {
     this.setState(prevState => {
       const transactions = [...prevState.transactions, exp];
       const expenseInput = "";
+      this.toggleShowExpenseModal();
       const freeSpend = this.calculateFreeSpend(transactions);
       return {
         transactions,
@@ -195,10 +218,14 @@ class App extends Component {
                   appState={this.state}
                   incomeHandle={this.incomeClickHandler}
                   incomeChange={this.incomeOnChangeHandler}
-                  descChange = {this.incomeDescChange}
+                  descChange={this.incomeDescChange}
                   expenseHandle={this.expenseClickHandler}
                   expenseChange={this.expenseOnChangeHandler}
-                  toggleModal = {this.toggleShowModal}
+                  toggleModal={this.toggleShowModal}
+                  addIncomeDesc={this.addIncomeDesc}
+                  expenseDescChange={this.expenseChange}
+                  addExpenseDesc={this.addExpenseDesc}
+                  toggleShowExpenseModal={this.toggleShowExpenseModal}
                 />
               )}
             />
