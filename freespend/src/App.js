@@ -10,7 +10,6 @@ import FixedExp from "./FixedExpenses";
 import Transactions from "./Transactions";
 import Goals from "./Goals";
 
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -19,13 +18,16 @@ class App extends Component {
       freeSpend: 0, // After fixed expenses and income are summed this will be what's left over.
       transactions: [], // this will be an array of objects of the class Income, or Expense, they will contain the date, the amount the type, and the description of the transaction
       incomeInput: "",
+      incomeDesc: "",
       expenseInput: "",
+      expenseDesc: "",
       fixedInput: "",
+      showModal : false,
       fixedDesc: "",
       fixedExpenseTotal: 0,
       goals: [],
       goalInput: "",
-      goalDesc: "",
+      goalDesc: ""
     };
 
     // Bindings for passed functions ---------------------
@@ -38,17 +40,44 @@ class App extends Component {
     this.fixedExpenseClickHandler = this.fixedExpenseClickHandler.bind(this);
     this.fixedExpenseOnChangeHandler = this.fixedExpenseOnChangeHandler.bind(this);
     this.addExpenseChangeHandler = this.addExpenseChangeHandler.bind(this);
+    this.toggleShowModal = this.toggleShowModal.bind(this);
+    this.addIncomeDesc = this.addIncomeDesc.bind(this);
+    this.incomeDescChange = this.incomeDescChange.bind(this)
     
+    
+    
+  }
+
+  toggleShowModal() {
+    this.setState(ps => {
+      return { showModal: !ps.showModal };
+    });
+  }
+
+  addIncomeDesc(){
+    let incomeDesc = this.state.incomeDesc;
+    let transactions = this.state.transactions;
+    transactions[transactions.length -1].description = incomeDesc;
+    this.setState({transactions});
+    this.toggleShowModal();
+
+  }
+
+  incomeDescChange(e){
+    this.setState({
+      incomeDesc : e.target.value
+    })
   }
 
   // This function adds a new revenue transaction to the transactions array in state, then calls calculate freespend which also
   // updates state. I'll need to refactor this. The console log was for debuggin purposes
 
-  incomeClickHandler = () => {
+  incomeClickHandler = () => { 
     const rev = new Revenue(this.state.incomeInput);
     this.setState(prevState => {
       const transactions = [...prevState.transactions, rev];
       const incomeInput = "";
+      this.toggleShowModal();
       const freeSpend = this.calculateFreeSpend(transactions);
       return {
         transactions,
@@ -102,7 +131,10 @@ class App extends Component {
   // and ads it to the fixed expenses totaled in state. It does this while updating the freespend property of state so it can be displayed
   // to the user.
 
-  calculateFreeSpend = (transactions, expenseTotal = this.state.fixedExpenseTotal) => {
+  calculateFreeSpend = (
+    transactions,
+    expenseTotal = this.state.fixedExpenseTotal
+  ) => {
     return this.transactTotal(transactions) + expenseTotal;
   };
 
@@ -130,7 +162,10 @@ class App extends Component {
       const fixedInput = "";
       const fixedDesc = "";
       const fixedExpenseTotal = this.calculateFixedExpenses(expenses);
-      const freeSpend = this.calculateFreeSpend(this.state.transactions, fixedExpenseTotal)
+      const freeSpend = this.calculateFreeSpend(
+        this.state.transactions,
+        fixedExpenseTotal
+      );
       return {
         fixedExpenses: expenses,
         fixedInput,
@@ -142,8 +177,8 @@ class App extends Component {
   };
 
   addExpenseChangeHandler = e => {
-    this.setState({fixedDesc : e.target.value})
-  }
+    this.setState({ fixedDesc: e.target.value });
+  };
 
   render() {
     return (
@@ -160,8 +195,10 @@ class App extends Component {
                   appState={this.state}
                   incomeHandle={this.incomeClickHandler}
                   incomeChange={this.incomeOnChangeHandler}
+                  descChange = {this.incomeDescChange}
                   expenseHandle={this.expenseClickHandler}
                   expenseChange={this.expenseOnChangeHandler}
+                  toggleModal = {this.toggleShowModal}
                 />
               )}
             />
@@ -173,12 +210,23 @@ class App extends Component {
                   appState={this.state}
                   onClick={this.fixedExpenseClickHandler}
                   onChange={this.fixedExpenseOnChangeHandler}
-                  descOnChange = {this.addExpenseChangeHandler}
+                  descOnChange={this.addExpenseChangeHandler}
                 />
               )}
             />
-            <Route path="/transactions" render = {props => (<Transactions {...props} transactions = {this.state.transactions}/>)} />
-            <Route path="/goals" render = {props => (<Goals {...props} appState = {this.state} />)} />
+            <Route
+              path="/transactions"
+              render={props => (
+                <Transactions
+                  {...props}
+                  transactions={this.state.transactions}
+                />
+              )}
+            />
+            <Route
+              path="/goals"
+              render={props => <Goals {...props} appState={this.state} />}
+            />
             <Route path="/send-money" />
           </Switch>
         </div>

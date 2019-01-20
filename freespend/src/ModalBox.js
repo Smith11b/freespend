@@ -1,12 +1,10 @@
-import React from 'react'
-import IncomeModal from './IncomeModal';
+import React from "react";
 
-function ModalBoxContainer(props) {
-    return (
-        <div>
-       <IncomeModal {...props}/>
-        </div>
-    )
+import { withModalToggle } from "./ModalProvider";
+
+function ModalBoxContainer({ show, children }) {
+  const style = { display: show ? "block" : "none" };
+  return <div style={style}>{children}</div>;
 }
 
-export default ModalBoxContainer
+export default withModalToggle(ModalBoxContainer);
