@@ -112,7 +112,7 @@ class App extends Component {
 
   incomeClickHandler = () => {
     const rev = new Revenue(this.state.incomeInput);
-    if (isNaN(rev.amount)) {
+    if (isNaN(rev.amount) || rev.amount === 0) {
       this.toggleShowWarning();
       return;
     }
@@ -131,7 +131,7 @@ class App extends Component {
 
   expenseClickHandler = () => {
     const exp = new ExpenseItem(this.state.expenseInput);
-    if (isNaN(exp.amount)) {
+    if (isNaN(exp.amount) || exp.amount === 0) {
       this.toggleShowWarning();
       return;
     }
@@ -202,10 +202,15 @@ class App extends Component {
 
   fixedExpenseClickHandler = () => {
     const fExp = new Fixed(this.state.fixedInput, this.state.fixedDesc);
-    if (isNaN(fExp.amount)) {
+    if (isNaN(fExp.amount) || fExp.amount === 0) {
       this.toggleShowWarning();
       return;
     }
+
+    if(this.state.fixedDesc.length === 0){
+      this.toggleShowWarning();
+
+    } else {
     this.setState(prevState => {
       const expenses = [...prevState.fixedExpenses, fExp];
       const fixedInput = "";
@@ -223,6 +228,7 @@ class App extends Component {
         freeSpend
       };
     });
+  }
   };
 
   addExpenseChangeHandler = e => {
