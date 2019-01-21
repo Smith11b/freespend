@@ -5,6 +5,7 @@ import Total from "./Total";
 import { withModalToggle } from "./ModalProvider";
 import IncomeModal from "./IncomeModal";
 import ExpenseModal from "./ExpenseModal";
+import InputWarningModal from "./InputWarningModal";
 
 function Home({ toggleModal, ...props }) {
   return (
@@ -24,6 +25,7 @@ function Home({ toggleModal, ...props }) {
         show={props.appState.showExpenseModal}
       />
 
+      <InputWarningModal show = {props.appState.showHomeWarning} toggleInputWarning = {props.toggleShowWarning}/>
       <Income
         value={props.appState.incomeInput}
         onChange={props.incomeChange}

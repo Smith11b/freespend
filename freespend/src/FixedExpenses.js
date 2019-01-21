@@ -2,10 +2,12 @@ import React from "react";
 import AddFixedExp from "./AddFixedExpense";
 import ExpenseTotal from "./ExpenseTotal";
 import FixedCard from "./FixedCard";
+import InputWarningModal from "./InputWarningModal";
 
 function FixedExp(props) {
   return (
     <div>
+      <InputWarningModal show = {props.appState.showHomeWarning} toggleInputWarning = {props.toggleShowWarning} />
       <AddFixedExp
         appState={props.appState}
         onClick={props.onClick}

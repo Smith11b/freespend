@@ -29,7 +29,7 @@ class App extends Component {
       goals: [],
       goalInput: "",
       goalDesc: "",
-      showHomeWarning: false,
+      showHomeWarning: false
     };
 
     // Bindings for passed functions ---------------------
@@ -50,6 +50,13 @@ class App extends Component {
     this.toggleShowExpenseModal = this.toggleShowExpenseModal.bind(this);
     this.expenseChange = this.expenseChange.bind(this);
     this.addExpenseDesc = this.addExpenseDesc.bind(this);
+    this.toggleShowWarning = this.toggleShowWarning.bind(this);
+  }
+
+  toggleShowWarning() {
+    this.setState(ps => {
+      return { showHomeWarning: !ps.showHomeWarning };
+    });
   }
 
   toggleShowModal() {
@@ -67,17 +74,25 @@ class App extends Component {
   addExpenseDesc() {
     let expenseDesc = this.state.expenseDesc;
     let transactions = this.state.transactions;
-    transactions[transactions.length - 1].description = expenseDesc;
-    this.setState({ transactions });
-    this.toggleShowExpenseModal();
+    if (this.state.expenseDesc.length === 0) {
+      this.toggleShowWarning();
+    } else {
+      transactions[transactions.length - 1].description = expenseDesc;
+      this.setState({ transactions });
+      this.toggleShowExpenseModal();
+    }
   }
 
   addIncomeDesc() {
     let incomeDesc = this.state.incomeDesc;
     let transactions = this.state.transactions;
-    transactions[transactions.length - 1].description = incomeDesc;
-    this.setState({ transactions });
-    this.toggleShowModal();
+    if (this.state.incomeDesc.length === 0) {
+      this.toggleShowWarning();
+    } else {
+      transactions[transactions.length - 1].description = incomeDesc;
+      this.setState({ transactions });
+      this.toggleShowModal();
+    }
   }
 
   incomeDescChange(e) {
@@ -97,6 +112,10 @@ class App extends Component {
 
   incomeClickHandler = () => {
     const rev = new Revenue(this.state.incomeInput);
+    if (isNaN(rev.amount)) {
+      this.toggleShowWarning();
+      return;
+    }
     this.setState(prevState => {
       const transactions = [...prevState.transactions, rev];
       const incomeInput = "";
@@ -108,12 +127,14 @@ class App extends Component {
         freeSpend
       };
     });
-    console.log(this.state.transactions);
   };
 
   expenseClickHandler = () => {
     const exp = new ExpenseItem(this.state.expenseInput);
-    console.log(exp);
+    if (isNaN(exp.amount)) {
+      this.toggleShowWarning();
+      return;
+    }
 
     this.setState(prevState => {
       const transactions = [...prevState.transactions, exp];
@@ -181,6 +202,10 @@ class App extends Component {
 
   fixedExpenseClickHandler = () => {
     const fExp = new Fixed(this.state.fixedInput, this.state.fixedDesc);
+    if (isNaN(fExp.amount)) {
+      this.toggleShowWarning();
+      return;
+    }
     this.setState(prevState => {
       const expenses = [...prevState.fixedExpenses, fExp];
       const fixedInput = "";
@@ -227,6 +252,8 @@ class App extends Component {
                   expenseDescChange={this.expenseChange}
                   addExpenseDesc={this.addExpenseDesc}
                   toggleShowExpenseModal={this.toggleShowExpenseModal}
+                  toggleShowWarning={this.toggleShowWarning}
+                  showHomeWarning={this.showHomeWarning}
                 />
               )}
             />
@@ -239,6 +266,7 @@ class App extends Component {
                   onClick={this.fixedExpenseClickHandler}
                   onChange={this.fixedExpenseOnChangeHandler}
                   descOnChange={this.addExpenseChangeHandler}
+                  toggleShowWarning={this.toggleShowWarning}
                 />
               )}
             />
