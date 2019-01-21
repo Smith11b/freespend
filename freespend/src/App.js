@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Header from "./Header";
 import Nav from "./Nav";
 import "./Classes";
-import Revenue from "./Classes";
+import Revenue, { Goal } from "./Classes";
 import { ExpenseItem, Fixed } from "./Classes";
 import { Route, Switch } from "react-router-dom";
 import Home from "./Home";
@@ -29,7 +29,8 @@ class App extends Component {
       goals: [],
       goalInput: "",
       goalDesc: "",
-      showHomeWarning: false
+      showHomeWarning: false,
+      showGoalModal: false
     };
 
     // Bindings for passed functions ---------------------
@@ -51,12 +52,23 @@ class App extends Component {
     this.expenseChange = this.expenseChange.bind(this);
     this.addExpenseDesc = this.addExpenseDesc.bind(this);
     this.toggleShowWarning = this.toggleShowWarning.bind(this);
+    this.addGoal = this.addGoal.bind(this);
+    this.goalAmountChange = this.goalAmountChange.bind(this);
+    this.goalDescChange = this.goalDescChange.bind(this);
+    this.toggleShowGoalModal = this.toggleShowGoalModal.bind(this);
+    
   }
 
   toggleShowWarning() {
     this.setState(ps => {
       return { showHomeWarning: !ps.showHomeWarning };
     });
+  }
+
+  toggleShowGoalModal(){
+    this.setState(ps => {
+      return { showGoalModal: !ps.showGoalModal};
+    })
   }
 
   toggleShowModal() {
@@ -107,12 +119,42 @@ class App extends Component {
     });
   }
 
+  addGoal() {
+    const goal = new Goal(this.state.goalInput, this.state.goalDesc);
+    if(isNaN(goal.amount) || goal.amount <= 0){
+      this.toggleShowGoalModal();
+      this.toggleShowWarning();
+    } else {
+    let goalInput = "";
+    let goalDesc = "";
+    let goals = [...this.state.goals, goal];
+    this.setState({
+      goalInput,
+      goalDesc,
+      goals
+    });
+    this.toggleShowGoalModal();
+  }
+  }
+
+  goalAmountChange(e) {
+    this.setState({
+      goalInput: e.target.value
+    });
+  }
+
+  goalDescChange(e) {
+    this.setState({
+      goalDesc: e.target.value
+    });
+  }
+
   // This function adds a new revenue transaction to the transactions array in state, then calls calculate freespend which also
   // updates state. I'll need to refactor this. The console log was for debuggin purposes
 
   incomeClickHandler = () => {
     const rev = new Revenue(this.state.incomeInput);
-    if (isNaN(rev.amount) || rev.amount === 0) {
+    if (isNaN(rev.amount) || rev.amount <= 0) {
       this.toggleShowWarning();
       return;
     }
@@ -131,7 +173,7 @@ class App extends Component {
 
   expenseClickHandler = () => {
     const exp = new ExpenseItem(this.state.expenseInput);
-    if (isNaN(exp.amount) || exp.amount === 0) {
+    if (isNaN(exp.amount) || exp.amount >= 0) {
       this.toggleShowWarning();
       return;
     }
@@ -207,28 +249,27 @@ class App extends Component {
       return;
     }
 
-    if(this.state.fixedDesc.length === 0){
+    if (this.state.fixedDesc.length === 0) {
       this.toggleShowWarning();
-
     } else {
-    this.setState(prevState => {
-      const expenses = [...prevState.fixedExpenses, fExp];
-      const fixedInput = "";
-      const fixedDesc = "";
-      const fixedExpenseTotal = this.calculateFixedExpenses(expenses);
-      const freeSpend = this.calculateFreeSpend(
-        this.state.transactions,
-        fixedExpenseTotal
-      );
-      return {
-        fixedExpenses: expenses,
-        fixedInput,
-        fixedDesc,
-        fixedExpenseTotal,
-        freeSpend
-      };
-    });
-  }
+      this.setState(prevState => {
+        const expenses = [...prevState.fixedExpenses, fExp];
+        const fixedInput = "";
+        const fixedDesc = "";
+        const fixedExpenseTotal = this.calculateFixedExpenses(expenses);
+        const freeSpend = this.calculateFreeSpend(
+          this.state.transactions,
+          fixedExpenseTotal
+        );
+        return {
+          fixedExpenses: expenses,
+          fixedInput,
+          fixedDesc,
+          fixedExpenseTotal,
+          freeSpend
+        };
+      });
+    }
   };
 
   addExpenseChangeHandler = e => {
@@ -287,7 +328,17 @@ class App extends Component {
             />
             <Route
               path="/goals"
-              render={props => <Goals {...props} appState={this.state} />}
+              render={props => (
+                <Goals
+                  {...props}
+                  appState={this.state}
+                  goalDescChange={this.goalDescChange}
+                  goalAmountChange={this.goalAmountChange}
+                  addGoal={this.addGoal}
+                  toggleGoalModal = {this.toggleShowGoalModal}
+                  toggleWarning = {this.toggleShowWarning}
+                />
+              )}
             />
             <Route path="/send-money" />
           </Switch>
