@@ -28,7 +28,8 @@ class App extends Component {
       showExpenseModal: false,
       goals: [],
       goalInput: "",
-      goalDesc: ""
+      goalDesc: "",
+      showHomeWarning: false,
     };
 
     // Bindings for passed functions ---------------------
