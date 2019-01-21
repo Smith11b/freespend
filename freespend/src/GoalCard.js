@@ -14,7 +14,7 @@ export default class GoalCard extends Component {
     render() {
         return (
             <div className = "goal-wrapper">
-                <div><h1>{this.props.currentPaid}</h1><h1>{this.props.amount}</h1></div>
+                <div><h1>{this.props.desc}</h1><h1>{this.props.currentPaid}</h1><h1>{this.props.amount}</h1></div>
                 <div className = "amount-bar"><div className = "paid-bar"></div></div>
             </div>
         )

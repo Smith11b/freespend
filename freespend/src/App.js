@@ -121,7 +121,7 @@ class App extends Component {
 
   addGoal() {
     const goal = new Goal(this.state.goalInput, this.state.goalDesc);
-    if(isNaN(goal.amount) || goal.amount <= 0){
+    if(isNaN(goal.amount) || goal.amount <= 0 || goal.desc.length === 0){
       this.toggleShowGoalModal();
       this.toggleShowWarning();
     } else {
