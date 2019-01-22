@@ -227,15 +227,23 @@ a {
 
 }
 
+
 .transaction-entry {
   padding: 15px;
   font-family: "Roboto", sans-serif;
   color: #394b40;
   display: inline-block;
+  margin-right: 50px;
+  width: 140px;
+}
+
+.delete {
+  margin-right: 20px;
 }
 
 .transaction-amount {
   display: inline-block;
+  color: #4cefa4;
 }
 .goal-head {
   height: 150px;
