@@ -256,6 +256,7 @@ a {
 .goal-mid {
   height: 348px;
   overflow-y: auto;
+  font-family: "Roboto", sans-serif;
 }
 
 .light-orange {
@@ -387,4 +388,17 @@ a {
 
 .goal-wrapper {
   text-align: center;
+  border-bottom: #80F4FD 1px solid;
+}
+
+.goal-modal {
+  height: 200px;
+}
+
+.goal-modal h1 {
+  padding-left: 20px;
+}
+
+.goal-top {
+  margin-top: 20px;
 }

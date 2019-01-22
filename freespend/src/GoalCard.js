@@ -28,7 +28,7 @@ export default class GoalCard extends Component {
     let style = this.calculateWidth();
     return (
       <div className="goal-wrapper">
-        <div>
+        <div className = "goal-top">
           <h1 className="goal-desc">{this.props.desc}:</h1>
           <h1 className="goal-current">
             <span className="blue-green">${this.props.currentPaid}</span> of{" "}
