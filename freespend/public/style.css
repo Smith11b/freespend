@@ -401,3 +401,33 @@ a {
 .goal-top {
   margin-top: 20px;
 }
+
+.job-h1 {
+  font-family: "Roboto", sans-serif;
+  color: #394b40;
+  margin-bottom: 20px;
+  margin-left: 140px;
+  color: #FF840A
+
+}
+
+.job-card {
+  font-family: "Roboto", sans-serif;
+  color: #394b40;
+  height: 150px;
+  border-bottom: #394b40 1px solid;
+  text-align: center;
+  padding-left: 10px;
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+
+.job-card h1 {
+  color: #FFa50A;
+}
+
+.job-mid {
+  overflow-y: auto;
+  height: 496px;
+
+}

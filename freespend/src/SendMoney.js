@@ -25,10 +25,10 @@ export default class SendMoney extends Component {
       
     render() {
         return (
-            <div>
-                <h1>Get a Job!</h1>
+            <div className = "job-mid">
+                <h1 className = "job-h1">Get a Job!</h1>
                 {this.state.data.map(job => {
-                    return (<div>
+                    return (<div className = "job-card">
                         <h1>{job.title}</h1>
                         <h2>{job.company}</h2>
                         <p>{job.location}</p>
