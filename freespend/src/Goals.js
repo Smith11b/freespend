@@ -27,7 +27,7 @@ function Goals(props) {
           </button>
         </div>
         {props.appState.goals.map(goal => (
-          <GoalCard amount={goal.amount} desc ={goal.desc} currentPaid={goal.currentAmount} />
+          <GoalCard amount={goal.amount} desc ={goal.description} currentPaid={goal.currentAmount} />
         ))}
       </div>
     </div>

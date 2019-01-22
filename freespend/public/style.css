@@ -351,3 +351,22 @@ a {
   font-size: 20px;
   width: 150px;
 }
+
+.goal-desc {
+  display: inline-block;
+  margin-right: 30px;
+}
+
+.goal-current {
+  display: inline-block;
+  margin-right: 30px;
+  width: 100px;
+}
+
+.goal-amount {
+  display: inline-block;
+}
+
+.blue-green {
+  color: #4cefa4;
+}

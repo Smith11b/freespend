@@ -2,21 +2,46 @@
 a description. this will contain 6 divs. The desc div, the amount div, two divs for the progess bar, a div to go around those
 bars and a div to go around the entire card. The green divs width will be equal to the percentage in of the goal met.  */
 
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 export default class GoalCard extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            percentComplete: 0
-        }
-    }
-    render() {
-        return (
-            <div className = "goal-wrapper">
-                <div><h1>{this.props.desc}</h1><h1>{this.props.currentPaid}</h1><h1>{this.props.amount}</h1></div>
-                <div className = "amount-bar"><div className = "paid-bar"></div></div>
-            </div>
-        )
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      percentComplete: 0
+    };
+    this.calculateWidth = this.calculateWidth.bind(this);
+    
 }
+
+    calculateWidth(){
+        if (this.props.currentPaid === 0){
+            return 0;
+        } else {
+        let percentComplete = this.props.currentPaid / this.props.amount *100;
+        this.setState({
+            percentComplete
+        })
+        }
+    
+    }
+
+  
+  render() {
+    return (
+      <div className="goal-wrapper">
+        <div>
+          <h1 className="goal-desc">{this.props.desc}</h1>
+          <h1 className="goal-current">
+            <span className="blue-green">${this.props.currentPaid}</span> of{" "}
+            <span className="light-orange">${this.props.amount}</span>
+          </h1>
+        </div>
+        <div className="amount-bar">
+          <div className="paid-bar" />
+        </div>
+      </div>
+    );
+  }
+}
+
