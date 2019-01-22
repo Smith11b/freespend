@@ -9,6 +9,7 @@ import Home from "./Home";
 import FixedExp from "./FixedExpenses";
 import Transactions from "./Transactions";
 import Goals from "./Goals";
+import SendMoney from "./SendMoney";
 
 class App extends Component {
   constructor(props) {
@@ -340,7 +341,7 @@ class App extends Component {
                 />
               )}
             />
-            <Route path="/send-money" />
+            <Route path="/send-money" component = {SendMoney} />
           </Switch>
         </div>
         <Nav />
