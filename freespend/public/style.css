@@ -360,7 +360,7 @@ a {
 .goal-current {
   display: inline-block;
   margin-right: 30px;
-  width: 100px;
+  width: 200px;
 }
 
 .goal-amount {
@@ -369,4 +369,22 @@ a {
 
 .blue-green {
   color: #4cefa4;
+}
+
+.amount-bar {
+  background-color: #FFa50A;
+  height: 7px;
+  width: 250px;
+  border-radius: 25px;
+  margin: 10px auto;
+}
+
+.paid-bar {
+  background-color: #4cefa4;
+  height: 7px;
+  border-radius: 25px;
+}
+
+.goal-wrapper {
+  text-align: center;
 }

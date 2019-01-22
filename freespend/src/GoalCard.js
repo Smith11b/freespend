@@ -8,40 +8,37 @@ export default class GoalCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      percentComplete: 0
+      percentComplete: 50,
+      width: this.calculateWidth()
     };
     this.calculateWidth = this.calculateWidth.bind(this);
-    
-}
+  }
 
-    calculateWidth(){
-        if (this.props.currentPaid === 0){
-            return 0;
-        } else {
-        let percentComplete = this.props.currentPaid / this.props.amount *100;
-        this.setState({
-            percentComplete
-        })
-        }
-    
+  calculateWidth() {
+    if (this.props.currentPaid === 0) {
+      return { width: "0px" };
+    } else {
+      let percentComplete = (this.props.currentPaid / this.props.amount) * 100;
+      this.setState({percentComplete})
+      return { width: `${this.state.percentComplete.toString()}%` };
     }
+  }
 
-  
   render() {
+    let style = this.calculateWidth();
     return (
       <div className="goal-wrapper">
         <div>
-          <h1 className="goal-desc">{this.props.desc}</h1>
+          <h1 className="goal-desc">{this.props.desc}:</h1>
           <h1 className="goal-current">
             <span className="blue-green">${this.props.currentPaid}</span> of{" "}
             <span className="light-orange">${this.props.amount}</span>
           </h1>
         </div>
         <div className="amount-bar">
-          <div className="paid-bar" />
+          <div style={style} className="paid-bar" />
         </div>
       </div>
     );
   }
 }
-
