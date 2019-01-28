@@ -32,6 +32,8 @@ export default class SendMoney extends Component {
                         <h1>{job.title}</h1>
                         <h2>{job.company}</h2>
                         <p>{job.location}</p>
+                        <img src = {job.company_logo} />
+                        
                 </div>)
                 })}
                 

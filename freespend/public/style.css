@@ -431,3 +431,7 @@ a {
   height: 496px;
 
 }
+
+.job-card img {
+  height: 20px;
+}

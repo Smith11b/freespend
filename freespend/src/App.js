@@ -341,7 +341,6 @@ class App extends Component {
                 />
               )}
             />
-            <Route path="/send-money" component = {SendMoney} />
           </Switch>
         </div>
         <Nav />
